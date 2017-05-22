@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour {
 
-    public Vector3 speed;
+    public Vector3 speed, rotationSpeed;
     public float mass;
     
 	// Use this for initialization
@@ -13,6 +13,7 @@ public class Gravity : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void UpdatePosition () {
+        transform.rotation *= Quaternion.Euler(rotationSpeed);
         transform.position = transform.position + speed;
 	}
 }
