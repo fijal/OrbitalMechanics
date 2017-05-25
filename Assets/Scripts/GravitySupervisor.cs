@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GravitySupervisor : MonoBehaviour {
-    float gravConst = 0.0000003f;
+    public static float gravConst = 0.0000003f;
 
     // Use this for initialization
     void Start () {

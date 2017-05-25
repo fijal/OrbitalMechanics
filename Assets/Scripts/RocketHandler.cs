@@ -17,15 +17,23 @@ public class RocketHandler : MonoBehaviour {
 	void FixedUpdate () {
         var r = BaroqueUI.BaroqueUI.GetControllers()[0];
         var em = jet.GetComponent<ParticleSystem>().emission;
+        var g = rocket.GetComponent<Gravity>();
         if (r.triggerPressed)
         {
+            if (g.stationaryParent != null)
+            {
+                g.stationaryParent = null;
+                // add escape velocity
+                g.speed = r.transform.forward * 3 * deltaVee;
+            }
             em.enabled = true;
-            rocket.GetComponent<Gravity>().speed += r.transform.forward * deltaVee;
+            g.speed += r.transform.forward * deltaVee;
         }
         else
         {
             em.enabled = false;
         }
-        rocket.transform.rotation = r.transform.rotation;
+        if (g.stationaryParent == null)
+            rocket.transform.rotation = r.transform.rotation;
     }
 }
